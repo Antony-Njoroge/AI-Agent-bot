@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/pages/api/agent.ts",
+      "src": "agent.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/agent"
+      "src": "/api/agent",
+      "dest": "/agent.ts"
     },
     {
       "src": "/(.*)",
