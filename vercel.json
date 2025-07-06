@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/pages/api/agent.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/agent" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
