@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🤖 AI Agent Bot</title>
+</head>
+<body>
+  <h1>AI Agent Bot</h1>
+  <textarea id="prompt" rows="4" cols="50" placeholder="Ask me anything..."></textarea><br/>
+  <button onclick="ask()">Ask</button>
+  <pre id="response"></pre>
 
+  <script>
+    async function ask() {
+      const input = document.getElementById('prompt').value;
+      const output = document.getElementById('response');
+      output.textContent = "Thinking...";
+      
+      const res = await fetch('/api/agent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: input })
+      });
+      
+      const data = await res.json();
+      output.textContent = data.choices?.[0]?.message?.content || JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
